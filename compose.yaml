@@ -1,0 +1,25 @@
+services:
+  db:
+    image: postgres:18
+    environment:
+      POSTGRES_DB: iam_db
+      POSTGRES_USER: iam
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Database password is required}
+    volumes:
+      - postgres_data:/var/lib/postgresql
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.8.1
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://db:5432/iam_db
+      KC_DB_USERNAME: iam
+      KC_DB_PASSWORD: ${POSTGRES_PASSWORD:?Database password is required}
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${KC_BOOTSTRAP_ADMIN_USERNAME:?Admin username is required}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KC_BOOTSTRAP_ADMIN_PASSWORD:?Admin password is required}
+    command: start-dev
+    ports:
+      - "127.0.0.1:8080:8080"
+volumes:
+  postgres_data:
+    
+
