@@ -42,7 +42,7 @@ Interactive testing has demostrated:
 - Successful processing of OIDC authorization-code callbacks.
 - Validation of returned authentication assurance claims against application policy.
 
-The current test implementation uses a dedicated localhost FASTAPI application. The HR and Operations business applications have not yet been implemented.
+The lab includes a dedicated localhost FastAPI authentication harness and two separate business portals.
 
 #### OIDC Test Harness
 
@@ -61,28 +61,12 @@ The automated test suite currently includes eight passing tests covering PKCE an
 
 These tests validate local behavior. Interactive Keycloak authentication and MFA behavior have been verified separately through manual testing.
 
-### Planned Applications
+### Business Applications
 
-#### HR Portal
+- **HR Portal** serves fictional employee records and lets HR editors update job titles.
+- **Operations Portal** serves sample metrics. Configuration changes require an Operations admin role, verified MFA assurance, and an active approval. The approval provider is a student milestone.
 
-An internal application demostrating role-based access to synthetic employee records.
-
-Planned permissions include:
--*hr-viewer*: Read authorized HR records.
--*hr-editor*: Read and modify permitted HR records.
--Unauthorized users: Denied access to restricted HR operations.
-
-Authorization decisions will be enforced by the backend.
-
-#### Operations Portal
-
-An internal application demonstrating differentiated operational access.
-
-Planned permissions include:
--*ops-viewer*: Read operational metrics.
--*ops-admin*: Perform authorized administrative operations.
-
-Privileged actions will require appriate role membership, MFA assurance, and time-bounded approval.
+See the [portal run instructions](apps/README.md).
 
 ### Planned Identity Lifecycle Automation
 
