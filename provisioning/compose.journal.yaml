@@ -1,0 +1,14 @@
+services:
+  journal-db:
+    image: postgres:18
+    environment:
+      POSTGRES_DB: jml_journal
+      POSTGRES_USER: journal_owner
+      POSTGRES_PASSWORD: ${JML_POSTGRES_ADMIN_PASSWORD:?Journal database owner password is required}
+    ports:
+      - "127.0.0.1:55432:5432"
+    volumes:
+      - journal_data:/var/lib/postgresql
+
+volumes:
+  journal_data:
