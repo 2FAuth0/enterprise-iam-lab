@@ -223,3 +223,6 @@ __marimo__/
 
 # Local TLS certificates and private keys
 certs/local/
+
+# PostgreSQL credentials
+.pgpass
